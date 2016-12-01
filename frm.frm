@@ -174,9 +174,9 @@ archiv.Cells.FormatConditions.Delete
             Frame2.Enabled = True
             
 
-            List_of_model BYKE_TYPE
-            List_of_number BYKE_REG
-            List_of_COLOR BYKE_COLOUR
+'-- List_of_model BYKE_TYPE
+'-- List_of_number BYKE_REG
+'-- List_of_COLOR BYKE_COLOUR
             
             
             Form.Caption = "Договор №" & NEW_DOGOVOR.Value & " от " & HIRE_COMING_FROM
