@@ -269,7 +269,20 @@ CUSTOMER_NAME.Value = List_of_name.Value
         Set x = R.Find(What:=Form.CUSTOMER_NAME.Value, LookIn:=xlValues, LookAt:=xlWhole)
         
         If Not x Is Nothing Then
-            Form.AGE.Value = x.Offset(, 1) ' - возраст
+            Set passp = x.Offset(, 5)
+            Set xage = x.Offset(, 1)
+            Set RArc = ThisWorkbook.Worksheets("АРХИВ").Range("q1:q200000")
+            Set y = RArc.Find(What:=Form.CUSTOMER_NAME.Value, LookIn:=xlValues, LookAt:=xlWhole)
+            If Not y Is Nothing Then
+                Set ddate = y.Offset(, -7) ' Дата договора
+                Set dage = y.Offset(, 1) ' Возраст на дату договора
+                Set dpasp = y.Offset(, 5)
+                If passp = dpasp Then
+                    agediff = DateDiff("yyyy", ddate, Now)
+                    xage = dage + agediff
+                End If
+            End If
+            Form.AGE.Value = xage ' - возраст
             Form.NATIONALITY.Value = x.Offset(, 2) ' - Национальность
             Form.ADDRESS_HOTEL.Value = x.Offset(, 3) ' - отель
             Form.ROOM.Value = x.Offset(, 4) ' - Комната
@@ -1413,4 +1426,3 @@ End Sub
 
 
 
-2
